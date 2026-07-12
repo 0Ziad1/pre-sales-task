@@ -1,0 +1,338 @@
+{
+  "info": {
+    "_postman_id": "0f8ae20c-956a-4237-9872-8cb5c6aa2e82",
+    "name": "Pre-Sales Requirements",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46188951"
+  },
+  "item": [
+    {
+      "name": "opportunity APIs",
+      "item": [
+        {
+          "name": "create-opportunity",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\":\"opportunity title\",\r\n    \"clientName\":\"ziad2\",\r\n    \"description\":\"description\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/opportunity/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "opportunity",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-opportunity",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:3000/opportunity/6a536b6b882f3e372a501e2d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "opportunity",
+                "6a536b6b882f3e372a501e2d"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-opportunities",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"search\": \"ziad\",\r\n    \"status\": \"new\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/opportunity/getAll",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "opportunity",
+                "getAll"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update-opportunity",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\":\"ziad\",\r\n    // \"clientName\":\"ziad\",\r\n    \"description\":\"ziad1\",\r\n    \"status\":\"ready-for-analysis\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/opportunity/6a536a72df9c40486217bf9c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "opportunity",
+                "6a536a72df9c40486217bf9c"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-opportunity",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/opportunity/6a536b6b882f3e372a501e2d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "opportunity",
+                "6a536b6b882f3e372a501e2d"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Requirement APIs",
+      "item": [
+        {
+          "name": "upsert-requirement",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"requirementsText\":\"requirement text must be written here\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/requirement/6a536b82882f3e372a501e2e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "requirement",
+                "6a536b82882f3e372a501e2e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-requirement",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/requirement/6a536b82882f3e372a501e2e",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "requirement",
+                "6a536b82882f3e372a501e2e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-requirement",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"requirementsText\":\"ziaaaaaaaaaaaaaaaaaaaaaaxaaaaaaaaa\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/requirement/6a536a72df9c40486217bf9c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "requirement",
+                "6a536a72df9c40486217bf9c"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Requirement File APIs",
+      "item": [
+        {
+          "name": "upload-file",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "6bc1f1b3-ef46-46b1-99e8-4bc4d458328a",
+                  "src": [
+                    "",
+                    "/C:/Users/Compumarts/Desktop/Ziad Mokadem 's CV.pdf"
+                  ]
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/requirement-file/upload/6a536a72df9c40486217bf9c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "requirement-file",
+                "upload",
+                "6a536a72df9c40486217bf9c"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-requirement-files",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "6bc1f1b3-ef46-46b1-99e8-4bc4d458328a",
+                  "value": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/requirement-file/files/6a536a72df9c40486217bf9c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "requirement-file",
+                "files",
+                "6a536a72df9c40486217bf9c"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete-file",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/requirement-file/files/6a5370206d1e33d40a862f97",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "requirement-file",
+                "files",
+                "6a5370206d1e33d40a862f97"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
