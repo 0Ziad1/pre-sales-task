@@ -1,6 +1,8 @@
 import { aiInit } from "../../config/AI.config.js";
 import type Opportunity from "../../model/opportunity/opportunity.model.js";
-export async function ai_agent(opportunity: any, file: any, requirementsText: string) {
+export async function ai_agent(opportunity: any, file: any, requirementsText: string ) {
+  console.log(file);
+  
     const prompt = `
 Analyze the following opportunity requirements.
 
@@ -11,7 +13,7 @@ Client: ${opportunity.clientName}
 Requirements Text:
 ${requirementsText || "No requirements text provided"}
 
-
+${file || "No extracted requirements text"}
 
 Instructions:
 

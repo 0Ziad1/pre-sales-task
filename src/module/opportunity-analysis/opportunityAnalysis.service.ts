@@ -1,11 +1,11 @@
 import type { NextFunction, Request, Response } from "express";
-import { aiInit } from "../../config/AI.config.js";
 import { ai_agent } from "../../utils/AI/index.js";
 import Opportunity from "../../model/opportunity/opportunity.model.js";
-import type { getOpportunityDTO } from "../Opportunity/opportunity.dto.js";
 import { OpportunityAnalysis } from "../../model/opportunityAnalysis/opportunityAnalysis.model.js";
 import RequirementFile from "../../model/requirementFile/requirementFile.model.js";
 import OpportunityRequirement from "../../model/opportunityRequirements/opportunityRequirements.model.js";
+import { extractTextFromFile } from "../../utils/read-files-data/extract-data-by-fileType.js";
+import { extract_data } from "../../utils/read-files-data/collect-files-data.js";
 
 class OpportunityAnalysisService {
     constructor() { }
@@ -15,11 +15,12 @@ class OpportunityAnalysisService {
         next: NextFunction
     ) => {
         try {
+
             const { id } = req.params as { id: string };
 
             const opportunity = await Opportunity.findById(id);
             const opportunityReqTxt = await OpportunityRequirement.findOne({ opportunityId: id }) as any;
-
+            const requirementFiles = await RequirementFile.find({ opportunityId: id })
             if (!opportunity) {
                 return res.status(404).json({
                     message: "Opportunity not found",
@@ -29,8 +30,11 @@ class OpportunityAnalysisService {
             const requirementsText =
                 opportunityReqTxt.requirementsText || "";
 
+            let extractedText = await extract_data(requirementFiles);
+
+
             // later you can add extracted file content here
-            const fileContent = "";
+            const fileContent = extractedText;
 
             const aiResponse = await ai_agent(
                 opportunity,
@@ -52,7 +56,6 @@ class OpportunityAnalysisService {
                     aiResponse,
                 });
             }
-
             const analysis =
                 await OpportunityAnalysis.create({
                     opportunityId: opportunity._id,
