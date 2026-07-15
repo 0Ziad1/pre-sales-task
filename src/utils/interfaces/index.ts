@@ -19,3 +19,13 @@ export interface IRequirementFile {
     fileType:ALLOWED_FILES,
     fileSize: number;
 }
+export interface IOpportunityAnalysis {
+    opportunityId: mongoose.Types.ObjectId;
+    summary: string;
+    mainFeatures: string[];
+    technicalNeeds: string[];
+    risks: string[];
+    questions: string[];
+    complexity: "low" | "medium" | "high";
+    analyzedAt: Date;
+}
