@@ -4,8 +4,8 @@ import Opportunity from "../../model/opportunity/opportunity.model.js";
 import { OpportunityAnalysis } from "../../model/opportunityAnalysis/opportunityAnalysis.model.js";
 import RequirementFile from "../../model/requirementFile/requirementFile.model.js";
 import OpportunityRequirement from "../../model/opportunityRequirements/opportunityRequirements.model.js";
-import { extractTextFromFile } from "../../utils/read-files-data/extract-data-by-fileType.js";
 import { extract_data } from "../../utils/read-files-data/collect-files-data.js";
+import { NotFoundError } from "../../utils/error/index.js";
 
 class OpportunityAnalysisService {
     constructor() { }
@@ -22,9 +22,7 @@ class OpportunityAnalysisService {
             const opportunityReqTxt = await OpportunityRequirement.findOne({ opportunityId: id }) as any;
             const requirementFiles = await RequirementFile.find({ opportunityId: id })
             if (!opportunity) {
-                return res.status(404).json({
-                    message: "Opportunity not found",
-                });
+                throw new NotFoundError("Opportunity not found");
             }
             const requirementsText =
                 opportunityReqTxt.requirementsText || "";
@@ -54,9 +52,9 @@ class OpportunityAnalysisService {
                 });
             }
             const analysis =
-                await OpportunityAnalysis.findOneAndUpdate(             {
-                        opportunityId: id as Object,
-                    },{
+                await OpportunityAnalysis.findOneAndUpdate({
+                    opportunityId: id as Object,
+                }, {
                     opportunityId: opportunity._id,
                     summary: parsedAnalysis.summary,
                     mainFeatures:
@@ -69,8 +67,8 @@ class OpportunityAnalysisService {
                     complexity:
                         parsedAnalysis.complexity,
                     analyzedAt: new Date(),
-                },{
-                    upsert:true,
+                }, {
+                    upsert: true,
                 });
 
             return res.status(200).json({
@@ -81,6 +79,18 @@ class OpportunityAnalysisService {
             next(error);
         }
     };
+    public getOpportunityAnalysis = async (req: Request, res: Response, next: NextFunction) => {
+        const { id } = req.params as { id: string };
+        const opportunity = await Opportunity.findById(id);
+
+        if (!opportunity) {
+          throw new NotFoundError("Opportunity Not found")
+        }
+        return res.status(200).json({
+            data:opportunity,
+        })
+
+    }
 }
 export default new OpportunityAnalysisService;
 

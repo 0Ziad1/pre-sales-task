@@ -6,6 +6,7 @@ import requirementFileController from "./module/RequirementFile/requirementFile.
 import opportunityAnalysisController from "./module/opportunity-analysis/opportunityAnalysis.controller.js"
 import { ZodError } from "zod";
 import multer from "multer";
+import type { AppError } from "./utils/error/index.js";
 export async function bootStrap(app: Express, express: any) {
     app.use(express.json());
     app.use(cors({ origin: "*" }));
@@ -13,7 +14,7 @@ export async function bootStrap(app: Express, express: any) {
     app.use("/opportunities",opportunityAnalysisController)
     app.use("/requirement", requirementController);
     app.use("/requirement-file", requirementFileController);
-    app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    app.use((err: AppError, req: Request, res: Response, next: NextFunction) => {
         if (
             err instanceof multer.MulterError
         ) {
@@ -33,7 +34,7 @@ export async function bootStrap(app: Express, express: any) {
                     })),
                 });
             }
-            res.status(500).json({
+            res.status(err.statusCode||500).json({
                 message: err.message || "Something went wrong",
             });
         }
