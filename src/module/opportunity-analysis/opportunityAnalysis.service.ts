@@ -14,80 +14,79 @@ class OpportunityAnalysisService {
         res: Response,
         next: NextFunction
     ) => {
-        try {
 
-            const { id } = req.params as { id: string };
+        const { id } = req.params as { id: string };
 
-            const opportunity = await Opportunity.findById(id);
-            const opportunityReqTxt = await OpportunityRequirement.findOne({ opportunityId: id }) as any;
-            const requirementFiles = await RequirementFile.find({ opportunityId: id })
-            if (!opportunity) {
-                throw new NotFoundError("Opportunity not found");
-            }
-            const requirementsText =
-                opportunityReqTxt.requirementsText || "";
-            //function to extract the multiple files text content
-            let extractedText = await extract_data(requirementFiles);
-
-            const fileContent = extractedText;
-
-            const aiResponse = await ai_agent(
-                opportunity,
-                fileContent,
-                requirementsText
-            );
-
-            let parsedAnalysis;
-            try {
-                const cleanJson = aiResponse
-                    .replace(/```json/g, "") //problem deep seek return =>``` json:{} ```
-                    .replace(/```/g, "")
-                    .trim();
-
-                parsedAnalysis = JSON.parse(cleanJson);
-            } catch {
-                return res.status(500).json({
-                    message: "AI returned invalid JSON",
-                    aiResponse,
-                });
-            }
-            const analysis =
-                await OpportunityAnalysis.findOneAndUpdate({
-                    opportunityId: id as Object,
-                }, {
-                    opportunityId: opportunity._id,
-                    summary: parsedAnalysis.summary,
-                    mainFeatures:
-                        parsedAnalysis.mainFeatures,
-                    technicalNeeds:
-                        parsedAnalysis.technicalNeeds,
-                    risks: parsedAnalysis.risks,
-                    questions:
-                        parsedAnalysis.questions,
-                    complexity:
-                        parsedAnalysis.complexity,
-                    analyzedAt: new Date(),
-                }, {
-                    upsert: true,
-                });
-
-            return res.status(200).json({
-                message: "Analysis generated successfully",
-                data: analysis,
-            });
-        } catch (error) {
-            next(error);
+        const opportunity = await Opportunity.findById(id);
+        const opportunityReqTxt = await OpportunityRequirement.findOne({ opportunityId: id }) as any;
+        const requirementFiles = await RequirementFile.find({ opportunityId: id })
+        if (!opportunity) {
+            throw new NotFoundError("Opportunity not found");
         }
+        const requirementsText =
+            opportunityReqTxt.requirementsText || "";
+        //function to extract the multiple files text content
+        let extractedText = await extract_data(requirementFiles);
+
+        const fileContent = extractedText;
+
+        const aiResponse = await ai_agent(
+            opportunity,
+            fileContent,
+            requirementsText
+        );
+
+        let parsedAnalysis;
+        try {
+            const cleanJson = aiResponse
+                .replace(/```json/g, "") //problem deep seek return =>``` json:{} ```
+                .replace(/```/g, "")
+                .trim();
+
+            parsedAnalysis = JSON.parse(cleanJson);
+        } catch {
+            return res.status(500).json({
+                message: "AI returned invalid JSON",
+                aiResponse,
+            });
+        }
+        const analysis =
+            await OpportunityAnalysis.findOneAndUpdate({
+                opportunityId: id as Object,
+            }, {
+                opportunityId: opportunity._id,
+                summary: parsedAnalysis.summary,
+                mainFeatures:
+                    parsedAnalysis.mainFeatures,
+                technicalNeeds:
+                    parsedAnalysis.technicalNeeds,
+                risks: parsedAnalysis.risks,
+                questions:
+                    parsedAnalysis.questions,
+                complexity:
+                    parsedAnalysis.complexity,
+                analyzedAt: new Date(),
+            }, {
+                upsert: true,
+            });
+
+        return res.status(200).json({
+            message: "Analysis generated successfully",
+            data: analysis,
+        });
     };
     public getOpportunityAnalysis = async (req: Request, res: Response, next: NextFunction) => {
         const { id } = req.params as { id: string };
         const opportunity = await Opportunity.findById(id);
-
         if (!opportunity) {
-          throw new NotFoundError("Opportunity Not found")
+            throw new NotFoundError("Opportunity Not found")
         }
+        const opportunityAnalysisData = await OpportunityAnalysis.findOne({
+            opportunityId: opportunity._id,
+        });
+
         return res.status(200).json({
-            data:opportunity,
+            data: opportunityAnalysisData||[],
         })
 
     }
