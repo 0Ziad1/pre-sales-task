@@ -26,14 +26,11 @@ class OpportunityAnalysisService {
                     message: "Opportunity not found",
                 });
             }
-
             const requirementsText =
                 opportunityReqTxt.requirementsText || "";
-
+            //function to extract the multiple files text content
             let extractedText = await extract_data(requirementFiles);
 
-
-            // later you can add extracted file content here
             const fileContent = extractedText;
 
             const aiResponse = await ai_agent(
@@ -45,7 +42,7 @@ class OpportunityAnalysisService {
             let parsedAnalysis;
             try {
                 const cleanJson = aiResponse
-                    .replace(/```json/g, "")
+                    .replace(/```json/g, "") //problem deep seek return =>``` json:{} ```
                     .replace(/```/g, "")
                     .trim();
 
@@ -57,7 +54,9 @@ class OpportunityAnalysisService {
                 });
             }
             const analysis =
-                await OpportunityAnalysis.create({
+                await OpportunityAnalysis.findOneAndUpdate(             {
+                        opportunityId: id as Object,
+                    },{
                     opportunityId: opportunity._id,
                     summary: parsedAnalysis.summary,
                     mainFeatures:
@@ -70,6 +69,8 @@ class OpportunityAnalysisService {
                     complexity:
                         parsedAnalysis.complexity,
                     analyzedAt: new Date(),
+                },{
+                    upsert:true,
                 });
 
             return res.status(200).json({
@@ -82,3 +83,5 @@ class OpportunityAnalysisService {
     };
 }
 export default new OpportunityAnalysisService;
+
+//donot forget to add the data to the database

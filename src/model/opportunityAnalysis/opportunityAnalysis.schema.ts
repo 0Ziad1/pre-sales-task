@@ -52,6 +52,8 @@ export const opportunityAnalysisSchema =
                 type: Date,
                 default: Date.now,
             },
-        },
+        },{
+            timestamps:true,
+        }
     );
 
