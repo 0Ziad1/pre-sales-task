@@ -106,6 +106,8 @@ http://localhost:3000
 
 ## Main Features
 
+## Main Features
+
 ### Opportunities
 - Create Opportunity
 - Get All Opportunities
@@ -122,6 +124,20 @@ http://localhost:3000
 - Upload Requirement Files
 - Get Files For Opportunity
 - Delete File
+
+### AI Opportunity Analysis
+- Extract text from uploaded requirement files (`pdf`, `docx`, `txt`)
+- Combine file content with manually entered requirements text
+- Analyze requirements using AI
+- Generate:
+  - Executive summary
+  - Main features
+  - Technical needs
+  - Potential risks
+  - Clarifying questions
+  - Complexity assessment
+- Store generated analyses in MongoDB
+- Retrieve previously generated analyses without reprocessing
 
 ---
 
