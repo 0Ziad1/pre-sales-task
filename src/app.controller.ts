@@ -10,8 +10,11 @@ import type { AppError } from "./utils/error/index.js";
 export async function bootStrap(app: Express, express: any) {
     app.use(express.json());
     app.use(cors({ origin: "*" }));
+    app.get("/", (req: Request, res: Response) => {
+        return res.status(200).json({ message: "llzzssl" });
+    });
     app.use("/opportunity", opportunityController);
-    app.use("/opportunities",opportunityAnalysisController)
+    app.use("/opportunities", opportunityAnalysisController)
     app.use("/requirement", requirementController);
     app.use("/requirement-file", requirementFileController);
     app.use((err: AppError, req: Request, res: Response, next: NextFunction) => {
@@ -24,20 +27,21 @@ export async function bootStrap(app: Express, express: any) {
                         message:
                             "File size must not exceed 5 MB",
                     });
-            }}
-            if (err instanceof ZodError) {
-                return res.status(400).json({
-                    message: "Validation failed",
-                    errors: err.issues.map(issue => ({
-                        field: issue.path.join("."),
-                        message: issue.message,
-                    })),
-                });
             }
-            res.status(err.statusCode||500).json({
-                message: err.message || "Something went wrong",
+        }
+        if (err instanceof ZodError) {
+            return res.status(400).json({
+                message: "Validation failed",
+                errors: err.issues.map(issue => ({
+                    field: issue.path.join("."),
+                    message: issue.message,
+                })),
             });
         }
+        res.status(err.statusCode || 500).json({
+            message: err.message || "Something went wrong",
+        });
+    }
     );
     app.use("/:dummy", (req: Request, res: Response, next: NextFunction) => {
         res.status(404).json({ message: "invalid url" })

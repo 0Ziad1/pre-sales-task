@@ -42,5 +42,11 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+  },
+     "watchOptions": {
+    "watchFile": "fixedpollinginterval",
+    "watchDirectory": "fixedpollinginterval",
+    "fallbackPolling": "fixedinterval"
   }
+  
 }

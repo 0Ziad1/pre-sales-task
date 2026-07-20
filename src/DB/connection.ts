@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { devConfig } from "../config/dev.env.js";
 export async function connectDB() {
+    
     if(!devConfig.MONGODB_URI){
         throw new Error ("MongoDB_URI is not configured");
     }

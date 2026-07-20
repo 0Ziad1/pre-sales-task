@@ -4,7 +4,7 @@ import { bootStrap } from "./app.controller.js";
 import { devConfig } from "./config/dev.env.js";
 
 const app = express();
-async function startServer() {
+async function startServer() {    
     connectDB();
     bootStrap(app, express);
     const port = devConfig.PORT || 3000;
