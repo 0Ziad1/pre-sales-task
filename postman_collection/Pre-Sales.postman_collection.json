@@ -16,7 +16,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"title\":\"opportunity title\",\r\n    \"clientName\":\"ziad2\",\r\n    \"description\":\"description\"\r\n}",
+              "raw": "{\r\n    \"title\":\"Customer Relationship Management (CRM) System for Sales Operations\",\r\n    \"clientName\":\"ABC Trading Group\",\r\n    \"description\":\"The client wants a system similar to Salesforce that can manage customers and sales activities.\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -36,7 +36,75 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "create-opportunity",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"title\":\"Customer Relationship Management (CRM) System for Sales Operations\",\r\n    \"clientName\":\"ABC Trading Group\",\r\n    \"description\":\"The client wants a system similar to Salesforce that can manage customers and sales activities.\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/opportunity/create",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "opportunity",
+                    "create"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "242"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"f2-Iiwbdnj0eyUqngq1GCIfDss+aK4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 09:42:06 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Opportunity created successfully.\",\n    \"data\": {\n        \"title\": \"Customer Relationship Management (CRM) System for Sales Operations\",\n        \"clientName\": \"ABC Trading Group\",\n        \"description\": \"The\",\n        \"status\": \"new\",\n        \"_id\": \"6a58a76e3871f743fffe36ae\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "get-opportunity",
@@ -51,7 +119,7 @@
               "raw": ""
             },
             "url": {
-              "raw": "http://localhost:3000/opportunity/6a536b6b882f3e372a501e2d",
+              "raw": "http://localhost:3000/opportunity/6a57588db6c2c9531ff0bac8",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -59,11 +127,74 @@
               "port": "3000",
               "path": [
                 "opportunity",
-                "6a536b6b882f3e372a501e2d"
+                "6a57588db6c2c9531ff0bac8"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "get-opportunity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "http://localhost:3000/opportunity/6a57588db6c2c9531ff0bac8",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "opportunity",
+                    "6a57588db6c2c9531ff0bac8"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "308"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"134-47U7y3p6Ajzc5lQcIYiUHaFXqqU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 09:42:26 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"6a57588db6c2c9531ff0bac8\",\n        \"title\": \"Customer Relationship Management (CRM) System for Sales Operations\",\n        \"clientName\": \"ABC Trading Group\",\n        \"description\": \"The client wants a system similar to Salesforce that can manage customers and sales activities.\",\n        \"status\": \"new\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "get-all-opportunities",
@@ -75,7 +206,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"search\": \"ziad\",\r\n    \"status\": \"new\"\r\n}",
+              "raw": "{\r\n    \"search\": \"ABC\",\r\n    \"status\": \"new\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -95,7 +226,75 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "get-all-opportunities",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"search\": \"ABC\",\r\n    \"status\": \"new\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/opportunity/getAll",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "opportunity",
+                    "getAll"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "764"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2fc-mu+kgQmsGt65s531lKqHsypP1v0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 09:54:22 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"_id\": \"6a57588db6c2c9531ff0bac8\",\n            \"title\": \"Customer Relationship Management (CRM) System for Sales Operations\",\n            \"clientName\": \"ABC Trading Group\",\n            \"description\": \"The client wants a system similar to Salesforce that can manage customers and sales activities.\",\n            \"status\": \"new\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6a58a7633871f743fffe36ad\",\n            \"title\": \"Customer Relationship Management (CRM) System for Sales Operations\",\n            \"clientName\": \"ABC\",\n            \"description\": \"The client wants a system similar to Salesforce that can manage customers and sales activities.\",\n            \"status\": \"new\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6a58a76e3871f743fffe36ae\",\n            \"title\": \"Customer Relationship Management (CRM) System for Sales Operations\",\n            \"clientName\": \"ABC Trading Group\",\n            \"description\": \"The\",\n            \"status\": \"new\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "update-opportunity",
@@ -141,7 +340,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:3000/opportunity/6a536b6b882f3e372a501e2d",
+              "raw": "http://localhost:3000/opportunity/6a561bc9aad5d625205ecb7e",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -149,11 +348,213 @@
               "port": "3000",
               "path": [
                 "opportunity",
-                "6a536b6b882f3e372a501e2d"
+                "6a561bc9aad5d625205ecb7e"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "delete-opportunity",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/opportunity/6a561bc9aad5d625205ecb7e",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "opportunity",
+                    "6a561bc9aad5d625205ecb7e"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "46"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2e-7Yh+f2DUxXLDCSn4fI7h8xe0qoA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 09:54:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Opportunity deleted successfully\"\n}"
+            },
+            {
+              "name": "delete-opportunity",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/opportunity/6a561bc9aad5d625205ecb7",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "opportunity",
+                    "6a561bc9aad5d625205ecb7"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "86"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"56-seG6wHwIGEUy2pAmVrwCjsBHw5g\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 09:55:18 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Validation failed\",\n    \"errors\": [\n        {\n            \"field\": \"id\",\n            \"message\": \"Invalid ObjectId\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "delete-opportunity",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/opportunity/6a561bc9aad5d625205ecb7e",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "opportunity",
+                    "6a561bc9aad5d625205ecb7e"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "35"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"23-IAIOhwCWvdk9eZuJoLOASPwde54\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 09:55:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Opportunity not found\"\n}"
+            }
+          ]
         }
       ]
     },
@@ -167,7 +568,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"requirementsText\":\"requirement text must be written here\"\r\n}",
+              "raw": "{\r\n    \"requirementsText\":\"Customer support functionality such as live chat and ticketing is desirable but requirements are not fully defined.\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -175,7 +576,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:3000/requirement/6a536b82882f3e372a501e2e",
+              "raw": "http://localhost:3000/requirement/6a57588db6c2c9531ff0bac8",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -183,11 +584,79 @@
               "port": "3000",
               "path": [
                 "requirement",
-                "6a536b82882f3e372a501e2e"
+                "6a57588db6c2c9531ff0bac8"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "upsert-requirement",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"requirementsText\":\"Customer support functionality such as live chat and ticketing is desirable but requirements are not fully defined.\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/requirement/6a57588db6c2c9531ff0bac8",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "requirement",
+                    "6a57588db6c2c9531ff0bac8"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "275"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"113-rSiqIxA+toAvrhFDrIpQp9F9WDE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 10:11:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Requirements saved successfully\",\n    \"data\": {\n        \"_id\": \"6a5759ee48d0f1974c158f69\",\n        \"opportunityId\": \"6a57588db6c2c9531ff0bac8\",\n        \"__v\": 0,\n        \"requirementsText\": \"Customer support functionality such as live chat and ticketing is desirable but requirements are not fully defined.\"\n    }\n}"
+            }
+          ]
         },
         {
           "name": "delete-requirement",
@@ -195,7 +664,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:3000/requirement/6a536b82882f3e372a501e2e",
+              "raw": "http://localhost:3000/requirement/6a58ae61a809ead718589e6c",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -203,11 +672,70 @@
               "port": "3000",
               "path": [
                 "requirement",
-                "6a536b82882f3e372a501e2e"
+                "6a58ae61a809ead718589e6c"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "delete-requirement",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/requirement/6a58ae61a809ead718589e6c",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "requirement",
+                    "6a58ae61a809ead718589e6c"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "62"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3e-UBaReHQhLB3fxih3PxIDKyZJG4E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 10:11:59 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"No requirements text found for this opportunity.\"\n}"
+            }
+          ]
         },
         {
           "name": "get-requirement",
@@ -222,7 +750,7 @@
               "raw": "{\r\n    \"requirementsText\":\"ziaaaaaaaaaaaaaaaaaaaaaaxaaaaaaaaa\"\r\n}"
             },
             "url": {
-              "raw": "http://localhost:3000/requirement/6a536a72df9c40486217bf9c",
+              "raw": "http://localhost:3000/requirement/6a57588db6c2c9531ff0bac8",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -230,11 +758,74 @@
               "port": "3000",
               "path": [
                 "requirement",
-                "6a536a72df9c40486217bf9c"
+                "6a57588db6c2c9531ff0bac8"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "get-requirement",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"requirementsText\":\"ziaaaaaaaaaaaaaaaaaaaaaaxaaaaaaaaa\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:3000/requirement/6a57588db6c2c9531ff0bac8",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "requirement",
+                    "6a57588db6c2c9531ff0bac8"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "251"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"fb-ZDadRKZCEgGCb9D1aH04mnzXMrQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 10:12:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"6a5759ee48d0f1974c158f69\",\n        \"opportunityId\": \"6a57588db6c2c9531ff0bac8\",\n        \"__v\": 0,\n        \"requirementsText\": \"Customer support functionality such as live chat and ticketing is desirable but requirements are not fully defined.\"\n    }\n}"
+            }
+          ]
         }
       ]
     },
@@ -253,15 +844,12 @@
                   "key": "file",
                   "type": "file",
                   "uuid": "6bc1f1b3-ef46-46b1-99e8-4bc4d458328a",
-                  "src": [
-                    "",
-                    "/C:/Users/Compumarts/Desktop/Ziad Mokadem 's CV.pdf"
-                  ]
+                  "src": "/C:/Users/Compumarts/Desktop/ziad.txt"
                 }
               ]
             },
             "url": {
-              "raw": "http://localhost:3000/requirement-file/upload/6a536a72df9c40486217bf9c",
+              "raw": "http://localhost:3000/requirement-file/upload/6a57588db6c2c9531ff0bac8",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -270,11 +858,82 @@
               "path": [
                 "requirement-file",
                 "upload",
-                "6a536a72df9c40486217bf9c"
+                "6a57588db6c2c9531ff0bac8"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "upload-file",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "6bc1f1b3-ef46-46b1-99e8-4bc4d458328a",
+                      "src": "/C:/Users/Compumarts/Desktop/ziad.txt"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3000/requirement-file/upload/6a57588db6c2c9531ff0bac8",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "requirement-file",
+                    "upload",
+                    "6a57588db6c2c9531ff0bac8"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "270"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"10e-j2sUv5R6iCx+dlWVTaf9LksjzIw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 10:12:37 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"File uploaded successfully\",\n    \"data\": {\n        \"opportunityId\": \"6a57588db6c2c9531ff0bac8\",\n        \"originalName\": \"ziad.txt\",\n        \"fileName\": \"1784196757732-ziad.txt\",\n        \"filePath\": \"uploads\\\\1784196757732-ziad.txt\",\n        \"fileType\": \"txt\",\n        \"fileSize\": 4,\n        \"_id\": \"6a58ae95a809ead718589e6d\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "get-requirement-files",
@@ -296,7 +955,7 @@
               ]
             },
             "url": {
-              "raw": "http://localhost:3000/requirement-file/files/6a536a72df9c40486217bf9c",
+              "raw": "http://localhost:3000/requirement-file/files/6a57588db6c2c9531ff0bac8",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -305,11 +964,82 @@
               "path": [
                 "requirement-file",
                 "files",
-                "6a536a72df9c40486217bf9c"
+                "6a57588db6c2c9531ff0bac8"
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "get-requirement-files",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "uuid": "6bc1f1b3-ef46-46b1-99e8-4bc4d458328a",
+                      "value": ""
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:3000/requirement-file/files/6a57588db6c2c9531ff0bac8",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "requirement-file",
+                    "files",
+                    "6a57588db6c2c9531ff0bac8"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "495"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1ef-EsjsrzmFuiWFHuBui9YNCiRPxlI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 10:13:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Files fetched successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6a577c0acfdee141f3e118ea\",\n            \"opportunityId\": \"6a57588db6c2c9531ff0bac8\",\n            \"originalName\": \"ziad.txt\",\n            \"fileName\": \"1784118282395-ziad.txt\",\n            \"filePath\": \"uploads\\\\1784118282395-ziad.txt\",\n            \"fileType\": \"txt\",\n            \"fileSize\": 4,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6a58ae95a809ead718589e6d\",\n            \"opportunityId\": \"6a57588db6c2c9531ff0bac8\",\n            \"originalName\": \"ziad.txt\",\n            \"fileName\": \"1784196757732-ziad.txt\",\n            \"filePath\": \"uploads\\\\1784196757732-ziad.txt\",\n            \"fileType\": \"txt\",\n            \"fileSize\": 4,\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "Delete-file",
@@ -333,6 +1063,199 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Requirement Analysis",
+      "item": [
+        {
+          "name": "analyze-opportunity",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/opportunities/6a57588db6c2c9531ff0bac8/analysis",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "opportunities",
+                "6a57588db6c2c9531ff0bac8",
+                "analysis"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "analyze-opportunity",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/opportunities/6a57588db6c2c9531ff0bac8/analysis",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "opportunities",
+                    "6a57588db6c2c9531ff0bac8",
+                    "analysis"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2131"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"853-ulE+BnTUSXFX0r2fKbIGHzRx1MQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 10:24:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Analysis generated successfully\",\n    \"data\": {\n        \"_id\": \"6a588b740369280ac366e434\",\n        \"opportunityId\": \"6a57588db6c2c9531ff0bac8\",\n        \"__v\": 0,\n        \"analyzedAt\": \"2026-07-16T09:06:52.263Z\",\n        \"complexity\": \"medium\",\n        \"mainFeatures\": [\n            \"Sales automation\",\n            \"Contact management\",\n            \"Opportunity pipeline\",\n            \"Lead management\",\n            \"Activity tracking\",\n            \"Sales forecasting\",\n            \"Reporting and analytics\",\n            \"Mobile access\",\n            \"Integration with email\",\n            \"Live chat functionality\",\n            \"Ticketing system\",\n            \"Data import/export\"\n        ],\n        \"questions\": [\n            \"Should live chat and ticketing be included in initial MVP or phased later?\",\n            \"What existing systems (ERP, accounting, email) need integration?\",\n            \"What user roles and access permissions are required?\",\n            \"What are the data migration requirements from current systems?\",\n            \"What are the performance expectations (number of users, concurrent chats)?\",\n            \"What reporting and analytics requirements exist beyond basic sales metrics?\",\n            \"Are there specific compliance or security requirements (GDPR, industry regulations)?\",\n            \"What mobile platform support is required (web, iOS, Android)?\",\n            \"What level of customization is needed for workflows?\",\n            \"What are the data retention and backup requirements?\"\n        ],\n        \"risks\": [\n            \"Customer support requirements are undefined\",\n            \"Live chat and ticketing scope is unclear\",\n            \"Integration requirements with existing systems unknown\",\n            \"User roles and permissions not specified\",\n            \"Data migration needs from current systems not defined\",\n            \"Performance and scalability requirements unspecified\"\n        ],\n        \"summary\": \"CRM system for ABC Trading Group primarily focused on improving sales operations with optional expansion into customer support capabilities including live chat and ticketing systems. The core requirements center on sales automation, while support features remain undefined.\",\n        \"technicalNeeds\": [\n            \"Cloud infrastructure\",\n            \"User authentication/authorization\",\n            \"Database design for CRM data\",\n            \"Real-time chat infrastructure\",\n            \"Ticketing system database\",\n            \"Email integration APIs\",\n            \"Mobile-responsive UI\",\n            \"Data backup and recovery\",\n            \"API for potential third-party integrations\",\n            \"Scalable architecture for future growth\"\n        ],\n        \"updatedAt\": \"2026-07-16T09:06:52.264Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get-analysis-data",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/opportunities/6a57588db6c2c9531ff0bac8/analysis",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "opportunities",
+                "6a57588db6c2c9531ff0bac8",
+                "analysis"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get-analysis-data",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3000/opportunities/6a57588db6c2c9531ff0bac8/analysis",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3000",
+                  "path": [
+                    "opportunities",
+                    "6a57588db6c2c9531ff0bac8",
+                    "analysis"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2087"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"827-870mcWozv/dQ+aMwlKPprr/7hqg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Jul 2026 09:41:25 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"_id\": \"6a588b740369280ac366e434\",\n        \"opportunityId\": \"6a57588db6c2c9531ff0bac8\",\n        \"__v\": 0,\n        \"analyzedAt\": \"2026-07-16T09:06:52.263Z\",\n        \"complexity\": \"medium\",\n        \"mainFeatures\": [\n            \"Sales automation\",\n            \"Contact management\",\n            \"Opportunity pipeline\",\n            \"Lead management\",\n            \"Activity tracking\",\n            \"Sales forecasting\",\n            \"Reporting and analytics\",\n            \"Mobile access\",\n            \"Integration with email\",\n            \"Live chat functionality\",\n            \"Ticketing system\",\n            \"Data import/export\"\n        ],\n        \"questions\": [\n            \"Should live chat and ticketing be included in initial MVP or phased later?\",\n            \"What existing systems (ERP, accounting, email) need integration?\",\n            \"What user roles and access permissions are required?\",\n            \"What are the data migration requirements from current systems?\",\n            \"What are the performance expectations (number of users, concurrent chats)?\",\n            \"What reporting and analytics requirements exist beyond basic sales metrics?\",\n            \"Are there specific compliance or security requirements (GDPR, industry regulations)?\",\n            \"What mobile platform support is required (web, iOS, Android)?\",\n            \"What level of customization is needed for workflows?\",\n            \"What are the data retention and backup requirements?\"\n        ],\n        \"risks\": [\n            \"Customer support requirements are undefined\",\n            \"Live chat and ticketing scope is unclear\",\n            \"Integration requirements with existing systems unknown\",\n            \"User roles and permissions not specified\",\n            \"Data migration needs from current systems not defined\",\n            \"Performance and scalability requirements unspecified\"\n        ],\n        \"summary\": \"CRM system for ABC Trading Group primarily focused on improving sales operations with optional expansion into customer support capabilities including live chat and ticketing systems. The core requirements center on sales automation, while support features remain undefined.\",\n        \"technicalNeeds\": [\n            \"Cloud infrastructure\",\n            \"User authentication/authorization\",\n            \"Database design for CRM data\",\n            \"Real-time chat infrastructure\",\n            \"Ticketing system database\",\n            \"Email integration APIs\",\n            \"Mobile-responsive UI\",\n            \"Data backup and recovery\",\n            \"API for potential third-party integrations\",\n            \"Scalable architecture for future growth\"\n        ],\n        \"updatedAt\": \"2026-07-16T09:06:52.264Z\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
     }
   ]
 }
