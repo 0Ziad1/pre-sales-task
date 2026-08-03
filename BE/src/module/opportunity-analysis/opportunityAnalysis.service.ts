@@ -23,8 +23,13 @@ class OpportunityAnalysisService {
         if (!opportunity) {
             throw new NotFoundError("Opportunity not found");
         }
+
         const requirementsText =
-            opportunityReqTxt.requirementsText || "";
+            opportunityReqTxt?.requirementsText?.length > 0
+                ? opportunityReqTxt.requirementsText
+                : "";
+
+
         //function to extract the multiple files text content
         let extractedText = await extract_data(requirementFiles);
 
@@ -50,6 +55,7 @@ class OpportunityAnalysisService {
                 aiResponse,
             });
         }
+        
         const analysis =
             await OpportunityAnalysis.findOneAndUpdate({
                 opportunityId: id as Object,
@@ -86,7 +92,7 @@ class OpportunityAnalysisService {
         });
 
         return res.status(200).json({
-            data: opportunityAnalysisData||[],
+            data: opportunityAnalysisData || [],
         })
 
     }

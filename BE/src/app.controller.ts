@@ -4,6 +4,7 @@ import opportunityController from "./module/Opportunity/opportunity.controller.j
 import requirementController from "./module/Requirements/requirement.controller.js"
 import requirementFileController from "./module/RequirementFile/requirementFile.controller.js"
 import opportunityAnalysisController from "./module/opportunity-analysis/opportunityAnalysis.controller.js"
+import ragController from "./module/RAG/rag.controller.js"
 import { ZodError } from "zod";
 import multer from "multer";
 import type { AppError } from "./utils/error/index.js";
@@ -17,6 +18,7 @@ export async function bootStrap(app: Express, express: any) {
     app.use("/opportunities", opportunityAnalysisController)
     app.use("/requirement", requirementController);
     app.use("/requirement-file", requirementFileController);
+    app.use("/chat-bot", ragController);
     app.use((err: AppError, req: Request, res: Response, next: NextFunction) => {
         if (
             err instanceof multer.MulterError

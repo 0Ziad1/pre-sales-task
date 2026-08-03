@@ -1,19 +1,13 @@
 import { OpenAI } from "openai";
 import { devConfig } from "./dev.env.js";
 
-export async function aiInit(prompt:string,instructions:string) {
+export async function aiInit() {
     const client = new OpenAI({
         baseURL:
-            "https://presales-ai-26-resource.services.ai.azure.com/openai/v1",
-        apiKey: devConfig.API_KEY,
+            devConfig.AZURE_AI_ENDPOINT,
+        apiKey: devConfig.AZURE_AI_API_KEY,
     });
-
-    const response = await client.responses.create({
-        model: "DeepSeek-V3.2",
-        instructions: instructions,
-        input: prompt,
-    });
-    return response.output_text;
+    return client;
 }
 
 

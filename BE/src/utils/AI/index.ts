@@ -1,5 +1,5 @@
 import { aiInit } from "../../config/AI.config.js";
-export async function ai_agent(opportunity: any, file: any, requirementsText: string ) {
+export async function ai_agent(opportunity: any, file?: any, requirementsText?: string ) {
 
   
     const prompt = `
@@ -66,5 +66,11 @@ The JSON schema MUST be:
   "complexity": "low | medium | high"
 }
 `;
-   return await aiInit(prompt,instructions);
+   const client =  await aiInit();
+       const response = await client.responses.create({
+        model: "DeepSeek-V3.2",
+        instructions: instructions,
+        input: prompt,
+    });
+    return response.output_text;
 }
