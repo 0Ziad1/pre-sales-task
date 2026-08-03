@@ -2,6 +2,8 @@ import type { Request, Response } from "express";
 import { generateEmbedding } from "../../utils/seed/generateEmbeddings.js";
 import { searchSimilarDocuments } from "../../utils/rag/vectorSearch.service.js";
 import { aiInit } from "../../config/AI.config.js";
+import { storeEmbeddings } from "../../utils/seed/storeEmbeddings.js";
+import { OpportunityEmbedding } from "../../model/opportunityEmbbedingSchema/opportunityEmbbedingSchema.model.js";
 
 class RagService {
     constructor() { };
@@ -10,8 +12,15 @@ class RagService {
         req: Request,
         res: Response
     ) => {
+        const firstDocument = await OpportunityEmbedding.findOne();
 
+        console.log("First document:", firstDocument);
+        console.log(
+            "Embedding length:",
+            firstDocument?.embedding?.length
+        );
         const { question } = req.body;
+        // await storeEmbeddings();
 
         if (!question?.trim()) {
             return res.status(400).json({
@@ -24,8 +33,9 @@ class RagService {
             await generateEmbedding(question);
 
         // 2. Retrieve relevant documents
-        const documents =
-            await searchSimilarDocuments(queryEmbedding);
+        const documents = await searchSimilarDocuments(queryEmbedding);
+        console.log("Documents:" + documents);
+
 
         // 3. Build context
         const context = documents
@@ -39,15 +49,16 @@ ${doc.text}
 
         // 4. Ask your existing AI
         const prompt = `
-Use the following project information to answer
-the user's question.
+            Use the following project information to answer
+            the user's question.
+            
+            Context:
+            ${context}
+            
+            Question:
+            ${question}
+            `;
 
-Context:
-${context}
-
-Question:
-${question}
-`;
         const instructions = `            
 You are an AI Presales Assistant.
 
@@ -60,6 +71,7 @@ context, clearly state that the information was
 not found in the available project data.
 `
 
+
         const client = await aiInit();
         const answer = await client.responses.create({
             model: "DeepSeek-V3.2",
@@ -69,13 +81,21 @@ not found in the available project data.
 
 
         return res.status(200).json({
-            answer,
+            answer:answer.output_text,
             sources: documents.map(doc => ({
-                opportunityId: doc.opportunityId,
-                sourceType: doc.sourceType,
-                fileName: doc.fileName,
                 score: doc.score,
             })),
+        });
+    };
+    public generateEmbeddings = async (
+        req: Request,
+        res: Response
+    ) => {
+        const documents = await storeEmbeddings();
+
+        return res.status(200).json({
+            message: "Embeddings generated successfully",
+            count: documents.length,
         });
     };
 }

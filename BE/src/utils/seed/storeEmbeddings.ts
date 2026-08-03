@@ -6,42 +6,50 @@ import { extractTextFromFile } from "../read-files-data/extract-data-by-fileType
 import { flattenFile, flattenOpportunity } from "./flattenData.js";
 import { generateEmbedding } from "./generateEmbeddings.js";
 
-async function storeEmbeddings() {
-    // Get all opportunities
+export async function storeEmbeddings() {
+
+
     const opportunities = await Opportunity.find();
 
-    console.log(
-        `📄 Loaded ${opportunities.length} opportunities`
-    );
+    await OpportunityEmbedding.deleteMany({});
 
     const documents = [];
 
     for (const opportunity of opportunities) {
 
-        // Get requirements
+
+
         const requirements =
             await OpportunityRequirement.findOne({
                 opportunityId: opportunity._id,
             });
 
-        // Get files
+
+
+
+
         const files = await RequirementFile.find({
             opportunityId: opportunity._id,
         });
 
-        // -----------------------------
-        // Requirements
-        // -----------------------------
 
-        if (requirements?.requirementsText) {
+
+        // Requirements
+        if (requirements?.requirementsText?.trim()) {
+
+
 
             const text = flattenOpportunity(
                 opportunity,
                 requirements
             );
 
+
+
             const embedding =
                 await generateEmbedding(text);
+
+
 
             documents.push({
                 opportunityId: opportunity._id,
@@ -50,18 +58,22 @@ async function storeEmbeddings() {
                 text,
                 embedding,
             });
+
+
         }
 
-        // -----------------------------
         // Files
-        // -----------------------------
-
         for (const file of files) {
+
+
 
             const content =
                 await extractTextFromFile(file as any);
 
+
+
             if (!content?.trim()) {
+
                 continue;
             }
 
@@ -74,6 +86,8 @@ async function storeEmbeddings() {
             const embedding =
                 await generateEmbedding(text);
 
+
+
             documents.push({
                 opportunityId: opportunity._id,
                 sourceType: "file",
@@ -82,23 +96,29 @@ async function storeEmbeddings() {
                 text,
                 embedding,
             });
+
+
         }
 
-        console.log(
-            `✅ Processed ${opportunity.title}`
+
+    }
+
+
+    if (documents.length === 0) {
+        throw new Error(
+            "No embedding documents were generated"
         );
     }
-    //clear data base
-    await OpportunityEmbedding.deleteMany({});
 
-    // Store embeddings
-    if (documents.length > 0) {
+
+
+
+
+    const inserted =
         await OpportunityEmbedding.insertMany(documents);
-    }
 
 
-    console.log(
-        `🎯 Inserted ${documents.length} embeddings`
-    );
+
+    return inserted;
 }
 

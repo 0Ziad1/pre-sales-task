@@ -1,4 +1,5 @@
 import { aiInit } from "../../config/AI.config.js";
+import { storeEmbeddings } from "./storeEmbeddings.js";
 
 export async function generateEmbedding(text: string) {
     if (!text?.trim()) {
@@ -10,6 +11,7 @@ export async function generateEmbedding(text: string) {
     const response = await client.embeddings.create({
         model: "text-embedding-3-small",
         input: text,
+        dimensions: 512,
     });
 
     const embedding = response.data[0]?.embedding;
@@ -18,5 +20,6 @@ export async function generateEmbedding(text: string) {
         throw new Error("No embedding was returned");
     }
 
+    
     return embedding;
 }
