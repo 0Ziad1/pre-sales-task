@@ -13,12 +13,6 @@ class RagService {
         res: Response
     ) => {
         const firstDocument = await OpportunityEmbedding.findOne();
-
-        console.log("First document:", firstDocument);
-        console.log(
-            "Embedding length:",
-            firstDocument?.embedding?.length
-        );
         const { question } = req.body;
         // await storeEmbeddings();
 
@@ -34,9 +28,6 @@ class RagService {
 
         // 2. Retrieve relevant documents
         const documents = await searchSimilarDocuments(queryEmbedding);
-        console.log("Documents:" + documents);
-
-
         // 3. Build context
         const context = documents
             .map((doc, index) => {
@@ -68,7 +59,7 @@ Do not invent information.
 
 If the answer cannot be found in the provided
 context, clearly state that the information was
-not found in the available project data.
+not found in the available project data in your answer only return the answer do not write that Based on the provided context.
 `
 
 
@@ -81,7 +72,7 @@ not found in the available project data.
 
 
         return res.status(200).json({
-            answer:answer.output_text,
+            answer: answer.output_text,
             sources: documents.map(doc => ({
                 score: doc.score,
             })),

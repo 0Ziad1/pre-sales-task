@@ -45,8 +45,8 @@ function App() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/ask",
-        { query },
+        "http://localhost:3000/chat-bot/ask",
+        { question:query },
         {
           headers: {
             Authorization: "Bearer YOUR_TOKEN_HERE",
@@ -54,6 +54,11 @@ function App() {
           },
         }
       );
+
+      console.log("Full response:", res);
+      console.log("Response data:", res.data);
+      console.log("Answer:", res.data.answer);
+
       setAnswer(res.data.answer || "No answer returned.");
     } catch (error) {
       console.error(error);
