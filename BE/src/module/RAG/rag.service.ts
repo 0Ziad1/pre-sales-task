@@ -4,6 +4,7 @@ import { searchSimilarDocuments } from "../../utils/rag/vectorSearch.service.js"
 import { aiInit } from "../../config/AI.config.js";
 import { storeEmbeddings } from "../../utils/seed/storeEmbeddings.js";
 import { OpportunityEmbedding } from "../../model/opportunityEmbbedingSchema/opportunityEmbbedingSchema.model.js";
+import { generateRagPrompt, instructions } from "../../utils/prompt-and-instrcutions/rag-prompt.js";
 
 class RagService {
     constructor() { };
@@ -39,30 +40,7 @@ ${doc.text}
             .join("\n");
 
         // 4. Ask your existing AI
-        const prompt = `
-            Use the following project information to answer
-            the user's question.
-            
-            Context:
-            ${context}
-            
-            Question:
-            ${question}
-            `;
-
-        const instructions = `            
-You are an AI Presales Assistant.
-
-Answer the user's question using the provided context.
-
-Do not invent information.
-
-If the answer cannot be found in the provided
-context, clearly state that the information was
-not found in the available project data in your answer only return the answer do not write that Based on the provided context.
-`
-
-
+        const prompt = generateRagPrompt(context, question);
         const client = await aiInit();
         const answer = await client.responses.create({
             model: "DeepSeek-V3.2",
